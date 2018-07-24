@@ -1,0 +1,26 @@
+---
+   - name: "Disbale ip forw[arding & ICMP routing & IPV6"
+     shell: "{{ item }}"	
+     with_file:
+       - disablevars  
+   - name: flush
+     shell: sysctl -w net.ipv4.route.flush=1
+   - name: "Create CIS.conf "
+     file: 
+       path: /etc/modprobe.d/CIS.conf
+       state: touch
+       mode: 644
+
+   - name : "Input RDS and TIPC entry in /etc/modprobe.d/CIS.conf"
+     lineinfile:
+       path:  /etc/modprobe.d/CIS.conf
+       line: "{{ item }}"
+     with_file: 
+       - CISconffile
+#Please enter the specfic interface that needs to be disabled in the wirelessinterface file 
+
+   - name: " Turning down wireless interfaces "
+     command: ip link set {{ item }} down
+     with_file:
+       - wirelessinterface
+

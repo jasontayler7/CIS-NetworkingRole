@@ -1,0 +1,3 @@
+install rds /bin/true
+install tipc /bin/true
+install sctp /bin/true
