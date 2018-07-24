@@ -19,7 +19,7 @@ System Requirement: Centos7 , RHEL7 & above.
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, variables that are in file/disablevars.yml, file/CISconfigfile.yml.
+A description of the settable variables for this role should go here, variables that are in file/disablevars.yml.
 
 - sysctl -w net.ipv4.ip_forward=0
 - sysctl -w net.ipv4.conf.all.send_redirects=0
@@ -27,6 +27,12 @@ A description of the settable variables for this role should go here, variables 
 - sysctl -w net.ipv6.conf.all.disable_ipv6=1
 - sysctl -w net.ipv6.conf.default.disable_ipv6=1
 - systemctl disable dhcpd
+
+file/CISconfigfile.yml
+
+- install rds /bin/true
+- install tipc /bin/true
+- install sctp /bin/true
 
 
 
