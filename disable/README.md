@@ -54,5 +54,6 @@ Including an example of how to use your role (for instance, with variables passe
 
 Author Information
 ------------------
-Kamal Aggarwal 
+Kamal Aggarwal
+
 Kartik Chopra   
