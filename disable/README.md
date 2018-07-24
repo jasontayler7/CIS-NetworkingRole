@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Disable defined Network configurations. Which makes linux system hacker proof.
+Disable defined Network configurations.
 
 Requirements
 ------------
