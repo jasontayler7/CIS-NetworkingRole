@@ -1,5 +1,5 @@
 ---
-   - name: "Disbale ip forw[arding & ICMP routing & IPV6"
+   - name: "Disbale ip forw[arding & ICMP routing & IPV6 & DHCP"
      shell: "{{ item }}"	
      with_file:
        - disablevars  
@@ -11,7 +11,7 @@
        state: touch
        mode: 644
 
-   - name : "Input RDS and TIPC entry in /etc/modprobe.d/CIS.conf"
+   - name : "Input SCTP, RDS and TIPC entry in /etc/modprobe.d/CIS.conf"
      lineinfile:
        path:  /etc/modprobe.d/CIS.conf
        line: "{{ item }}"
