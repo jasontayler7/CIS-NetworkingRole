@@ -1,17 +1,41 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Disable defined Network configurations.
 
 Requirements
 ------------
+System Requirement: Centos7 , RHEL7 & above.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+1) Ensure IP forwarding is disabled
+2) Ensure packet redirect sending is disabled
+3) Ensure IPv6 is disabled
+4) Ensure DHCP is disabled
+4) Ensure SCTP(stream control transoport protocol) is disabled
+5) Ensure RDS is disabled
+6) Ensure wireless interfaces are disabled
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+A description of the settable variables for this role should go here, variables that are in file/disablevars.yml.
+
+- sysctl -w net.ipv4.ip_forward=0
+- sysctl -w net.ipv4.conf.all.send_redirects=0
+- sysctl -w net.ipv4.conf.default.send_redirects=0
+- sysctl -w net.ipv6.conf.all.disable_ipv6=1
+- sysctl -w net.ipv6.conf.default.disable_ipv6=1
+- systemctl disable dhcpd
+
+file/CISconfigfile.yml
+
+- install rds /bin/true
+- install tipc /bin/true
+- install sctp /bin/true
+
+
+
 
 Dependencies
 ------------
@@ -23,16 +47,13 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: Centos
       roles:
-         - { role: username.rolename, x: 42 }
+         - disable
 
-License
--------
-
-BSD
 
 Author Information
 ------------------
+Kamal Aggarwal
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Kartik Chopra   
