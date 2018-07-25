@@ -19,8 +19,8 @@
        - CISconffile
 #Please enter the specfic interface that needs to be disabled in the wirelessinterface file 
 
-   - name: " Turning down wireless interfaces "
-     command: ip link set {{ item }} down
-     with_file:
-       - wirelessinterface
+#   - name: " Turning down wireless interfaces "
+#      command: ip link set {{ item }} down
+#     with_file:
+#       - wirelessinterface
 
