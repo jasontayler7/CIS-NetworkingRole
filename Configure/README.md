@@ -8,6 +8,20 @@ Requirements
 
 System Requirement: RHEL7 /Centos7 & above.
 
+TASKS
+------------
+
+- Ensure TCP Wrappers is installed
+- Ensure /etc/hosts.allow is configured
+- Ensure /etc/hosts.deny is configured
+- Ensure permissions on /etc/hosts.allow are configured
+- Ensure permissions on /etc/hosts.deny are configured
+- Ensure iptables is installed
+- Ensure default deny firewall policy
+- Ensure loopback traffic is configured
+- Ensure outbound and established connections are configured
+- Ensure firewall rules exist for all open ports
+
 Role Variables
 --------------
 In this we used variable and stored in the files folder ( protocol, port, ipaddress & outbound)
