@@ -24,18 +24,21 @@
      yum:
        name: iptables
        state: present
-   - name: Configure loop back on iptables
+   - name: "Ensure TCP warper is installed"
+     yum:
+       name: tcp_wrappers
+   - name: "Configure loop back on iptables"
      shell: "{{ item }}"
      with_items:
        - iptables -A INPUT -i lo -j ACCEPT
        - iptables -A OUTPUT -o lo -j ACCEPT
        - iptables -A INPUT -s 127.0.0.0/8 -j DROP
          
-   - name: Configure loop back on iptables
+   - name: "Configure loop back on iptables"
      shell: "{{ item }}"
      with_file:
        - outbound
-   - name: Ensure firewall rules exist for all open ports
+   - name: "Ensure firewall rules exist for all open ports"
      shell: iptables -A INPUT -p item[0] --dport item[1] -m state --state NEW -j ACCEPT
      with_file:
        - protocol
