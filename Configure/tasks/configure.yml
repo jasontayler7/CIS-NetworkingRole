@@ -40,3 +40,9 @@
      with_file:
        - protocol
        - port
+   - name: "Ensure default deny policy configure"
+     shell: "{{ item }}"
+     with_items: 
+       - iptables -P INPUT DROP
+       - iptables -P OUTPUT DROP
+       - iptables -P FORWARD DROP
