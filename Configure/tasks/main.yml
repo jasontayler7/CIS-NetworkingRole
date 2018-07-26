@@ -1,0 +1,3 @@
+---
+# tasks file for Configure
+- include: configure.yml

@@ -1,0 +1,42 @@
+---
+   - name: "Set permission 644 on  /etc/hosts.allow & /etc/hosts.deny configured"
+     file:
+       path: "{{ item }}"
+       owner: root
+       group: root
+       mode: 0644
+     with_items: 
+       - /etc/hosts.allow
+       - /etc/hosts.deny
+
+   - name: "Configure /etc/hosts.allow file" 
+     lineinfile:
+       path: /etc/hosts.allow
+       line: "{{ item }}" 
+     with_file:
+       - ipaddress
+
+   - name: "Configure /etc/hosts.deny file"
+     lineinfile:
+       path: /etc/hosts.deny
+       line: ALL:ALL
+   - name: "Ensure iptables installed"
+     yum:
+       name: iptables
+       state: present
+   - name: Configure loop back on iptables
+     shell: "{{ item }}"
+     with_items:
+       - iptables -A INPUT -i lo -j ACCEPT
+       - iptables -A OUTPUT -o lo -j ACCEPT
+       - iptables -A INPUT -s 127.0.0.0/8 -j DROP
+         
+   - name: Configure loop back on iptables
+     shell: "{{ item }}"
+     with_file:
+       - outbound
+   - name: Ensure firewall rules exist for all open ports
+     shell: iptables -A INPUT -p item[0] --dport item[1] -m state --state NEW -j ACCEPT
+     with_file:
+       - protocol
+       - port
